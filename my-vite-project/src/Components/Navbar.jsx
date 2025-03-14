@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; 
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const logo = "/ConnectFlow_Cropped.png";
@@ -10,7 +10,7 @@ const toggle_dark_icon = "/day.png";
 
 const Navbar = ({ theme, setTheme }) => {
   const toggle_mode = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+    theme === "light" ? setTheme("dark") : setTheme("light");
   };
 
   return (
@@ -34,12 +34,15 @@ const Navbar = ({ theme, setTheme }) => {
 
       <div className="search-box">
         <input type="text" placeholder="Search" />
-        <img src={theme === 'light' ? search_icon_light : search_icon_dark} alt="search icon" />
+        <img
+          src={theme === "light" ? search_icon_light : search_icon_dark}
+          alt="search icon"
+        />
       </div>
 
       <img
         onClick={toggle_mode}
-        src={theme === 'light' ? toggle_light_icon : toggle_dark_icon}
+        src={theme === "light" ? toggle_light_icon : toggle_dark_icon}
         alt="toggle mode"
         className="toggle-icon"
       />

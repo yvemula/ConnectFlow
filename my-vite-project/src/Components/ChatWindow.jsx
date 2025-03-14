@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import SuggestedResponses from "./SuggestedResponses";
 
-function ChatWindow() {
+const ChatWindow = () => {
   const [messages, setMessages] = useState([]);
 
-  const sendMessage = (text) => {
-    setMessages([...messages, { text, sender: "user" }]);
-  };
+  const sendMessage = useCallback((text) => {
+    const trimmedText = text.trim();
+    if (!trimmedText) return;
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { text: trimmedText, sender: "user" }
+    ]);
+  }, []);
 
   return (
     <div className="chat-window">
@@ -17,6 +22,6 @@ function ChatWindow() {
       <SuggestedResponses messages={messages} onSend={sendMessage} />
     </div>
   );
-}
+};
 
 export default ChatWindow;
