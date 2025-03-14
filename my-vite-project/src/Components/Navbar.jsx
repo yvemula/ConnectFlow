@@ -29,7 +29,7 @@ const Navbar = ({theme, setTheme}) => {
 
             <div className='search-box'>
                 <input type="text" placeholder='Search'/>
-                <img src ={theme == 'light' ? search_icon_light : search_icon_dark} alt=""/>
+                <img src ={theme === 'light' ? search_icon_light : search_icon_dark} alt=""/>
             </div>
 
             <img onClick={()=>{toggle_mode()}}src={theme == 'light' ? toggle_light_icon: toggle_dark_icon} 
