@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import "./Messages.css"; // optional CSS for styling
+import "./Messages.css";
 
 const Messages = () => {
-  // State to track which tab is active: "friends" or "chats"
   const [activeTab, setActiveTab] = useState("friends");
 
-  // Function to render the tab content based on activeTab
   const renderContent = () => {
     if (activeTab === "friends") {
       return (

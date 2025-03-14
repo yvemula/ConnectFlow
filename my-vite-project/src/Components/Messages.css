@@ -1,28 +1,82 @@
+/* Container for the entire message page */
 .message-page {
-    padding: 20px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 40px auto;
+  background: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Styling the tabs container */
+.tabs {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+/* Styling for each tab button */
+.tabs button {
+  flex: 1;
+  padding: 12px 20px;
+  cursor: pointer;
+  background: #e0e0e0;
+  border: none;
+  outline: none;
+  border-radius: 4px 4px 0 0;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover state for tab buttons */
+.tabs button:hover {
+  background: #dcdcdc;
+}
+
+/* Active tab styling */
+.tabs button.active {
+  background: #fff;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the tab content */
+.tab-content {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 0 4px 4px 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Fade in animation for smoother content transition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .tabs {
-    display: flex;
-    margin-bottom: 10px;
+  to {
+    opacity: 1;
   }
-  
-  .tabs button {
-    flex: 1;
-    padding: 10px;
-    cursor: pointer;
-    background: #f0f0f0;
-    border: none;
-    outline: none;
-  }
-  
-  .tabs button.active {
-    background: #d0d0d0;
-    font-weight: bold;
-  }
-  
-  .tab-content {
-    border: 1px solid #ccc;
-    padding: 15px;
-  }
-  
+}
+
+/* Optional: Styling for headings and lists inside the tab content */
+.tab-content h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.tab-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tab-content li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.tab-content li:last-child {
+  border-bottom: none;
+}
