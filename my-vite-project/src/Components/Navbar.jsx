@@ -1,41 +1,50 @@
-import React, { useState, useEffect } from "react";
-//import { Link } from "react-router-dom";
-import  Button  from "./Button";
+import React from 'react';
+import { Link } from 'react-router-dom'; 
 import "./Navbar.css";
-const logo_light = "/logo-black.png";
-const logo_dark = "/logo-white.png";
+
+const logo = "/ConnectFlow_Cropped.png";
 const search_icon_light = "/search-w.png";
 const search_icon_dark = "/search-b.png";
 const toggle_light_icon = "/night.png";
 const toggle_dark_icon = "/day.png";
-const logo = "/ConnectFlow_Cropped.png";
 
-const Navbar = ({theme, setTheme}) => {
+const Navbar = ({ theme, setTheme }) => {
+  const toggle_mode = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
 
-    const toggle_mode = () => {
-        theme == 'light' ? setTheme('dark') : setTheme('light');
-    }
+  return (
+    <nav className="navbar">
+      <img src={logo} alt="logo" className="logo" />
 
-    return (
-        <div className='navbar'>
-            <img src ={logo} alt="" className='logo'/>
-            
-            <ul>
-                <li>Home</li>
-                <li>Products</li>
-                <li>Features</li>
-                <li>About</li>
-            </ul>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/messages">Messages</Link>
+        </li>
+        <li>
+          <Link to="/features">Features</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
 
-            <div className='search-box'>
-                <input type="text" placeholder='Search'/>
-                <img src ={theme == 'light' ? search_icon_light : search_icon_dark} alt=""/>
-            </div>
+      <div className="search-box">
+        <input type="text" placeholder="Search" />
+        <img src={theme === 'light' ? search_icon_light : search_icon_dark} alt="search icon" />
+      </div>
 
-            <img onClick={()=>{toggle_mode()}}src={theme == 'light' ? toggle_light_icon: toggle_dark_icon} 
-            alt="" className='toggle-icon'/>
-        </div>
-    )
-}
+      <img
+        onClick={toggle_mode}
+        src={theme === 'light' ? toggle_light_icon : toggle_dark_icon}
+        alt="toggle mode"
+        className="toggle-icon"
+      />
+    </nav>
+  );
+};
 
 export default Navbar;

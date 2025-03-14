@@ -1,0 +1,28 @@
+.message-page {
+    padding: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+    background: #f0f0f0;
+    border: none;
+    outline: none;
+  }
+  
+  .tabs button.active {
+    background: #d0d0d0;
+    font-weight: bold;
+  }
+  
+  .tab-content {
+    border: 1px solid #ccc;
+    padding: 15px;
+  }
+  
