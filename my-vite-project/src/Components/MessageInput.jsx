@@ -1,35 +1,49 @@
-import React, { useState } from "react";
-import "./MessageInput.css"; // Optional: Include a CSS file for styling
+import React from "react";
+import "./MessageInput.css";
 
-const MessageInput = ({ onSend }) => {
-  const [message, setMessage] = useState("");
+class MessageInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentMessage: "",
+    };
 
-  const handleSend = () => {
-    // Avoid sending empty messages
-    if (message.trim() === "") return;
-    onSend(message);
-    setMessage("");
-  };
+    this.updateMessage = this.updateMessage.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+  }
 
-  const handleKeyPress = (event) => {
-    // Send message on pressing Enter
-    if (event.key === "Enter") {
-      handleSend();
+  updateMessage(e) {
+    this.setState({ currentMessage: e.target.value });
+  }
+
+  handleKeyPress(e) {
+    if (e.key === "Enter") {
+      this.submitMessage();
     }
-  };
+  }
 
-  return (
-    <div className="message-input">
-      <input
-        type="text"
-        placeholder="Type your message..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
-      <button onClick={handleSend}>Send</button>
-    </div>
-  );
-};
+  submitMessage() {
+    const messageTrimmed = this.state.currentMessage.trim();
+    if (!messageTrimmed) return;
+    this.props.onSend(messageTrimmed);
+    this.setState({ currentMessage: "" });
+  }
+
+  render() {
+    return (
+      <div className="message-input">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={this.state.currentMessage}
+          onChange={this.updateMessage}
+          onKeyPress={this.handleKeyPress}
+        />
+        <button onClick={this.submitMessage}>Send</button>
+      </div>
+    );
+  }
+}
 
 export default MessageInput;

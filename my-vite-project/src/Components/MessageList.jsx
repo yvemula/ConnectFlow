@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./MessageList.css";
 
-// A sub-component to render an individual message
-const MessageItem = ({ message, showSender }) => {
-  const { sender, text, timestamp } = message;
+// Helper component to display each message
+function SingleMessage({ data, shouldDisplaySender }) {
+  const { sender, text, timestamp } = data;
+
   return (
     <div className={`message-item ${sender}`}>
-      {showSender && <div className="message-sender">{sender}</div>}
+      {shouldDisplaySender && <div className="message-sender">{sender}</div>}
       <div className="message-content">{text}</div>
       {timestamp && (
         <div className="message-timestamp">
@@ -15,39 +16,56 @@ const MessageItem = ({ message, showSender }) => {
       )}
     </div>
   );
-};
+}
 
-const MessageList = ({ messages }) => {
-  const messageEndRef = useRef(null);
+class MessageList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.endOfListRef = React.createRef();
+  }
 
-  // Automatically scroll to the bottom when messages change
-  useEffect(() => {
-    if (messageEndRef.current) {
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+  componentDidUpdate(prevProps) {
+    // Check if the messages prop actually changed
+    if (prevProps.messages !== this.props.messages) {
+      this.scrollToBottom();
     }
-  }, [messages]);
+  }
 
-  return (
-    <div className="message-list">
-      {messages.length === 0 && (
-        <div className="no-messages">No messages yet.</div>
-      )}
-      {messages.map((message, index) => {
-        // Determine if we should display the sender's name
-        // If the previous message was from a different sender, show the sender.
-        const previousSender = index > 0 ? messages[index - 1].sender : null;
-        const showSender = message.sender !== previousSender;
-        return (
-          <MessageItem
-            key={index}
-            message={message}
-            showSender={showSender}
-          />
-        );
-      })}
-      <div ref={messageEndRef} />
-    </div>
-  );
-};
+  scrollToBottom() {
+    if (this.endOfListRef.current) {
+      this.endOfListRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  renderMessageList() {
+    const { messages } = this.props;
+
+    if (!messages || messages.length === 0) {
+      return <div className="no-messages">No messages yet.</div>;
+    }
+
+    return messages.map((msg, idx) => {
+      const previousSender = idx > 0 ? messages[idx - 1].sender : null;
+      const shouldDisplaySender = msg.sender !== previousSender;
+
+      return (
+        <SingleMessage
+          key={idx}
+          data={msg}
+          shouldDisplaySender={shouldDisplaySender}
+        />
+      );
+    });
+  }
+
+  render() {
+    return (
+      <div className="message-list">
+        {this.renderMessageList()}
+        <div ref={this.endOfListRef} />
+      </div>
+    );
+  }
+}
 
 export default MessageList;
