@@ -1,8 +1,10 @@
+// App.jsx
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Message from "./Components/Messages";
 import About from "./Components/About";
+import ChatPage from "./Components/ChatPage"; // Import your ChatPage component
 import "./App.css";
 
 // Optional Home component for the default route
@@ -28,7 +30,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/messages" element={<Message />} />
-          <Route path="/about" element={<About />} /> {/* Added About route */}
+          <Route path="/about" element={<About />} />
+          <Route path="/chat/:friend" element={<ChatPage />} />{" "}
+          {/* Chat route */}
         </Routes>
       </Router>
     </div>
