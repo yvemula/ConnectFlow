@@ -5,39 +5,38 @@ function SuggestedResponses({ messages, onSend }) {
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    // clear suggestions or skip if there are no messages, clear suggestions or skip
+    // If there are no messages, clear suggestions and skip
     if (messages.length === 0) {
       setSuggestions([]);
       return;
     }
 
-    // recieves text from the last message
+    // Get the text from the last message
     const lastMessage = messages[messages.length - 1];
     const newSuggestions = generateAISuggestions(lastMessage.text);
-
     setSuggestions(newSuggestions);
   }, [messages]);
 
-  //dummy AI suggestion logic:
-  //will need to replace with real AI api logic soon
-
+  // Dummy AI suggestion logic:
+  // Replace with real AI/ML logic if you like
   const generateAISuggestions = (message) => {
-    // Basic examples:
-    if (message.toLowerCase().includes("hello")) {
+    const lower = message.toLowerCase();
+
+    if (lower.includes("hello")) {
       return ["Hi there!", "Hey!", "Hello! 😊"];
     }
-    if (message.toLowerCase().includes("help")) {
+    if (lower.includes("help")) {
       return [
         "What do you need help with?",
         "I can assist you!",
         "Tell me more!",
       ];
     }
-    if (message.toLowerCase().includes("bye")) {
+    if (lower.includes("bye")) {
       return ["Goodbye! 👋", "See you later!", "Take care!"];
     }
 
-    // default fallback suggestions
+    // Default fallback suggestions
     return ["Interesting…", "Tell me more!", "That makes sense!"];
   };
 
