@@ -1,4 +1,6 @@
+// Messages.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Messages.css";
 
 const Messages = () => {
@@ -10,9 +12,15 @@ const Messages = () => {
         <div className="tab-content">
           <h2>Friends</h2>
           <ul>
-            <li>Alice</li>
-            <li>Bob</li>
-            <li>Charlie</li>
+            <li>
+              <Link to="/chat/Alice">Alice</Link>
+            </li>
+            <li>
+              <Link to="/chat/Bob">Bob</Link>
+            </li>
+            <li>
+              <Link to="/chat/Charlie">Charlie</Link>
+            </li>
           </ul>
         </div>
       );
@@ -21,9 +29,15 @@ const Messages = () => {
         <div className="tab-content">
           <h2>Chats</h2>
           <ul>
-            <li>Chat with Alice</li>
-            <li>Chat with Bob</li>
-            <li>Chat with Charlie</li>
+            <li>
+              <Link to="/chat/Alice">Chat with Alice</Link>
+            </li>
+            <li>
+              <Link to="/chat/Bob">Chat with Bob</Link>
+            </li>
+            <li>
+              <Link to="/chat/Charlie">Chat with Charlie</Link>
+            </li>
           </ul>
         </div>
       );
