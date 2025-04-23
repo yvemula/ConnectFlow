@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Features.css"; // you can style it however you like
+
 
 const Features = () => (
   <div className="features-page">

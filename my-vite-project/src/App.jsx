@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Message from "./Components/Messages";
 import About from "./Components/About";
-import ChatPage from "./Components/ChatPage"; // Import your ChatPage component
+import ChatPage from "./Components/ChatPage";
+import Features from "./Components/Features";
 import "./App.css";
 import { Link } from "react-router-dom";
 
-// Optional Home component for the default route
 const Home = () => (
   <div className="home-page">
     <div className="home-content">
@@ -17,6 +17,9 @@ const Home = () => (
       <Link to="/messages" className="cta-button">
         Get Started
       </Link>
++     <Link to="/features" className="cta-button secondary">
++       See Features
++     </Link>
     </div>
   </div>
 );
@@ -35,10 +38,10 @@ const App = () => {
         <Navbar theme={theme} setTheme={setTheme} />
         <Routes>
           <Route path="/" element={<Home />} />
++         <Route path="/features" element={<Features />} />
           <Route path="/messages" element={<Message />} />
           <Route path="/about" element={<About />} />
-          <Route path="/chat/:friend" element={<ChatPage />} />{" "}
-          {/* Chat route */}
+          <Route path="/chat/:friend" element={<ChatPage />} />
         </Routes>
       </Router>
     </div>
