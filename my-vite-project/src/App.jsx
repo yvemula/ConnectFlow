@@ -6,15 +6,19 @@ import Message from "./Components/Messages";
 import About from "./Components/About";
 import ChatPage from "./Components/ChatPage"; // Import your ChatPage component
 import "./App.css";
+import { Link } from "react-router-dom";
 
 // Optional Home component for the default route
 const Home = () => (
   <div className="home-page">
-+     <div className="home-content">
-+       <h1>Welcome to ConnectFlow</h1>
-+       <p>Your AI-powered messaging platform.</p>
-+     </div>
-+   </div>
+    <div className="home-content">
+      <h1>ConnectFlow</h1>
+      <p>Seamlessly chat with friends, powered by AI.</p>
+      <Link to="/messages" className="cta-button">
+        Get Started
+      </Link>
+    </div>
+  </div>
 );
 
 const App = () => {
