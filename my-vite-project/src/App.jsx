@@ -9,10 +9,12 @@ import "./App.css";
 
 // Optional Home component for the default route
 const Home = () => (
-  <div>
-    <h1>Welcome to ConnectFlow</h1>
-    <p>Your AI-powered messaging platform.</p>
-  </div>
+  <div className="home-page">
++     <div className="home-content">
++       <h1>Welcome to ConnectFlow</h1>
++       <p>Your AI-powered messaging platform.</p>
++     </div>
++   </div>
 );
 
 const App = () => {
